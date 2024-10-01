@@ -1,0 +1,71 @@
+.about-section {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+  z-index: 2; /* Ensure it's above the video */
+}
+
+.about-section.visible {
+  opacity: 1; /* Make visible */
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.box-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 20px; /* Adds space between boxes */
+}
+
+.info-box {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  flex: 1; /* Ensures boxes take equal width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  min-width: 250px; /* Ensures a minimum width for each box */
+}
+
+.contact-box {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  flex: 1; /* Ensures boxes take equal width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  min-width: 250px; /* Ensures a minimum width for each box */
+}
+
+.contact-box h3{
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.contact-box p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.highlight {
+  box-shadow: 0 0 20px 5px #5dacd1; /* Glow effect */
+  transition: 0.6s ease-in-out;
+}
+
+.info-box h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.info-box p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+}

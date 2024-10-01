@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Enables smooth scrolling */
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: auto; 
+  overflow-x: hidden;/* Allow scrolling */
+   
+}
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px;
+  padding-left: 15px;
+  padding-top:10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 15;
+  background: rgb(221, 221, 221); /* Semi-transparent background */
+  color: white;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.about-us button {
+  color: black;
+  font-family: "SUSE", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 45px;
+  border: none;
+  background: none;
+  transition: 0.3s;
+}
+
+.about-us button:hover {
+  background-color:white;
+  border-radius:8px;
+}
+
+.video-background {
+  position: relative; /* Changed to relative */
+  width: 100%;
+  height: 100vh; /* Adjusted height to cover the desired portion of the viewport */
+  overflow: hidden;
+  margin-top: 2%;
+  z-index: 1; /* Ensure it's behind other content */
+}
+
+.background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Keep the video behind everything else */
+}
+
+.get-started-container {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.get-started-button {
+  --offset: 6px;
+  background: rgb(223, 223, 223);
+  border-radius: 50px;
+  position: relative;
+  height: 75px;
+  width: 200px;
+  max-width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  border: none;
+  color: black;
+  font-size: 1.5rem;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Conic gradient */
+.get-started-button::before { 
+  content: '';
+  background: conic-gradient(transparent 270deg, rgb(102, 102, 102), transparent);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  aspect-ratio: 1;
+  width: 100%;
+  animation: rotate 2s linear infinite;
+  z-index: -2; /* Behind the button */
+}
+
+/* Overlay */
+.get-started-button::after {
+  content: '';
+  background: inherit;
+  border-radius: inherit;
+  position: absolute;
+  inset: var(--offset);
+  height: calc(100% - 2 * var(--offset));
+  width: calc(100% - 2 * var(--offset));
+  z-index: -1; /* Behind the text */
+}
+
+.get-started-button:hover {
+  background-color: rgb(54, 54, 54); /* Fade to black on hover */
+  color:white;
+}
+
+@keyframes rotate {
+  from {
+      transform: translate(-50%, -50%) scale(1.4) rotate(0turn);
+  }
+
+  to {
+      transform: translate(-50%, -50%) scale(1.4) rotate(1turn);
+  }
+}
+
+
+
+.content {
+  flex: 1; /* Allows the content to grow and fill the remaining space */
+}
+
+
+
+.logo-image {
+  height: 40px; /* Adjust height as needed */
+  width: auto;  /* Keeps the aspect ratio intact */
+  max-width: 100%; /* Ensure it does not exceed the container's width */
+}
