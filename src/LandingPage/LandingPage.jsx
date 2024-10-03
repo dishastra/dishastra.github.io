@@ -36,12 +36,13 @@ export const LandingPage = () => {
   useEffect(() => {
     // Dynamically load the Botpress webchat scripts
     const script1 = document.createElement('script');
-    script1.src = "https://cdn.botpress.cloud/webchat/v2.1/inject.js";
+    script1.src = "https://cdn.botpress.cloud/webchat/v2.2/inject.js";
     script1.async = true;
     document.body.appendChild(script1);
 
     const script2 = document.createElement('script');
-    script2.src = 'https://mediafiles.botpress.cloud/02a9c541-6b4a-41dd-b126-2885904a2c24/webchat/v2.1/config.js';
+    script2.src = 'https://files.bpcontent.cloud/2024/10/03/17/20241003174539-IGMPP6LK.js';
+
     script2.async = true;
     document.body.appendChild(script2);
 
