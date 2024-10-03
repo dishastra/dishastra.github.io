@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {LandingPage} from './LandingPage/LandingPage'; // Adjust the path if necessary
 // import { LoginPage } from './LoginPage/LoginPage';
 // import { MapComponent } from './MapComponent/MapComponent';
+import {UnderConstruction} from './UnderConstruction/UnderConstruction';
 import { CookiesProvider } from 'react-cookie';
 
 
@@ -12,6 +13,7 @@ function App() {
     <CookiesProvider><Router>
       <Routes>
         <Route path ="/" element={<LandingPage />}/>
+        <Route path='*' element={<UnderConstruction/>} />
         {/* <Route path="/login" element={<LoginPage />} /> */}
         {/* <Route path="/map" element={<MapComponent />} /> */}
       </Routes>
