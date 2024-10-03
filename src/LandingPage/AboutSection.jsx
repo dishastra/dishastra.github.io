@@ -47,7 +47,7 @@ export const AboutSection = () => {
           </div>
           <div id="contact" className="contact-box">
             <h3>Contact</h3>
-            <p>dishastra@gmail.com</p> follow for more...
+            <p>dishastra@gmail.com</p>
           </div>
         </div>
       </div>
