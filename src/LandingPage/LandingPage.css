@@ -156,3 +156,21 @@ body {
   width: auto;  /* Keeps the aspect ratio intact */
   max-width: 100%; /* Ensure it does not exceed the container's width */
 }
+
+.about-us_trigger{
+  display:none;
+}
+@media (max-width: 700px)
+{
+  .about-us{
+    display:none;
+  }
+  .about-us.is-open{
+    display:flex;
+  }
+  .about-us_trigger{
+    display:block;
+    margin-right: 15px;
+  }
+  
+}

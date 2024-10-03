@@ -69,3 +69,18 @@
   color: #555;
   line-height: 1.5;
 }
+
+
+@media (max-width:700px) {
+  .box-container {
+    flex-direction: column; /* Stack boxes vertically */
+    align-items: center; /* Center-align boxes */
+    gap: 10px; /* Optional: Adjust spacing between boxes */
+  }
+
+  .info-box, .contact-box {
+    width: 100%; /* Make boxes full width */
+    max-width: 400px; /* Optional: Set a maximum width */
+  }
+
+}

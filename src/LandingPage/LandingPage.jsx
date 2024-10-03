@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import Hamburger from 'hamburger-react'
 import './LandingPage.css';
 import { useNavigate } from 'react-router-dom';
 import free_art_sih from './free_art_sih.mp4';
@@ -9,6 +10,10 @@ import { Tutorial } from './TutorialSection';
 export const LandingPage = () => {
   const navigate = useNavigate();
 
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => {
+    setIsOpen((open) => !open)
+  }
   const handleGetStarted = () => {
     navigate('/login');
   };
@@ -53,12 +58,15 @@ export const LandingPage = () => {
         <div className="logo">
           <img src={sihlogo} alt="Company Logo" className="logo-image" />
         </div>
-        <div className="about-us">
+        <div className={`about-us ${isOpen ? "is-open" : ""}`}>
           <button className="about-us" onClick={handleTutorial}>Tutorial</button>
           <button className="about-us" onClick={() => handleSectionScroll('aboutsec')}>About Us</button>
           <button className="about-us" onClick={() => handleSectionScroll('vision')}>Our Vision</button>
           <button className="about-us" onClick={() => handleSectionScroll('product')}>Our Product</button>
           <button className="about-us" onClick={() => handleSectionScroll('contact')}>Contact</button>
+        </div>
+        <div className='about-us_trigger' onClick={toggleMenu}>
+        <Hamburger color = "#000000" toggled = {isOpen} toggle={setIsOpen} />
         </div>
       </div>
       <div className="video-background">
