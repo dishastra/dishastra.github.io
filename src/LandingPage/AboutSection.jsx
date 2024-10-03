@@ -39,11 +39,11 @@ export const AboutSection = () => {
           </div>
           <div id="vision" className="info-box">
             <h3>Our Vision</h3>
-            <p>The aim was to create an affordable offline model using map-matching algorithm to predict vehicular movement. As of now the market pricing will depend on the deployment scale of the model and the service level agreements with the respective cloud providers/brokers. We aim to keep cheap yet affordable rates for this service initially giving a pre-determined number of free calls/requests</p>
+            <p>The aim was to create an affordable model using map-matching algorithm to predict vehicular movement even during insufficient satellite coverage. As of now the market pricing will depend on the deployment scale of the model and the service level agreements with the respective cloud providers/brokers. We aim to keep cheap yet affordable rates for this service initially giving a pre-determined number of free calls/requests</p>
           </div>
           <div id="product" className="info-box">
             <h3>Our Product</h3>
-            <p>We have leveraged advanced APIs to accurately map-match and predict user coordinates, and refined the map matching process with other underlying techniques, we ensure accurate map matching without your GPS coordinates.</p>
+            <p>We have leveraged advanced APIs to accurately map-match and predict user coordinates, and refined the map matching process with other underlying techniques, we ensure accurate map matching even if the satellite coverage is insufficient.</p>
           </div>
           <div id="contact" className="contact-box">
             <h3>Contact</h3>
