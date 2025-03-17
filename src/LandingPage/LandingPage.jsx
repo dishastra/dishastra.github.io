@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Hamburger from 'hamburger-react'
 import './LandingPage.css';
 import { useNavigate } from 'react-router-dom';
-import free_art_sih from './free_art_sih.mp4';
+import bg_compressed from './bg_compressed.mp4';
 import sihlogo from './sihlogotrans.png';
 import { AboutSection } from './AboutSection';
 import { Tutorial } from './TutorialSection';
@@ -72,7 +72,7 @@ export const LandingPage = () => {
       </div>
       <div className="video-background">
         <video className="background-video" autoPlay loop muted>
-          <source src={free_art_sih} type="video/mp4" />
+          <source src={bg_compressed} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>
