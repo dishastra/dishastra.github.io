@@ -2,14 +2,28 @@
 
  
 .tutorial-section {
-    opacity:0;
-    transition: opacity 1s ease-in-out;
-    padding: 20px;
-    /*background-color: #f9f9f9; */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  padding: 20px;
+  position: relative; /* Ensure this is set */
+  margin: 1px auto;
+  width: 100%; /* Make sure it takes full width */
+  min-height: 600px; /* Set a minimum height to ensure visibility */
+}
 
-    margin: 20px auto; /* Center the section horizontally */
-    /*max-width: 800px; /* Limit the width */
-  }
+.tutorial-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('./tutorialbg.png'); /* Update path as needed */
+  background-size: cover;
+  background-position: center;
+  z-index: -1; /* Place behind other content */
+  opacity: 0.8; /* Adjust for desired visibility */
+  filter: blur(5px);
+}
 
   .tutorial-section.visible {
     opacity: 1; /* Make visible */
@@ -17,6 +31,10 @@
 
   .tutorial-content {
     text-align: center; /* Center the title */
+    display: flex;      /* Add this */
+    flex-direction: column; /* Add this */
+    align-items: center; /* Add this to center child elements */
+    width: 100%;        /* Add this */
   }
   
   .tutorial-content h2 {
@@ -28,12 +46,15 @@
   }
   
   .video-container {
+    position:relative;
+    background-color: transparent;
     display: flex;
     justify-content: center; /* Center the video horizontally */
     align-items: center; /* Center the video vertically */
     height: 500px; /* Set a fixed height for the video container */
     border-radius: 8px;
     overflow: hidden;
+    width:50%;
     /*background-color: #000; /* Optional: background color for the video container */
   }
   

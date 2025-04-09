@@ -1,6 +1,7 @@
 // Tutorial.jsx
 import tutorial from './tutorial.mp4';
 import React, { useEffect, useRef, useState } from 'react';
+import tutorialbg from './tutorialbg.png';
 import './TutorialSection.css'; // Optional: create a CSS file for specific styles
 
 export const Tutorial = () => {
@@ -27,19 +28,18 @@ const [isVisible, setIsVisible] = useState(false);
   }, []);
 
   return (
-    <div id="tutorial"
-    ref={tutorialSectionRef}
-    className={`tutorial-section ${isVisible ? 'visible' : ''}`}>
-      <div className="tutorial-content">
-        <h2>Tutorial</h2>
-        <div className="video-container">
-          <video className="tutorial-video" controls>
-            <source src={tutorial} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
+  <div id="tutorial" ref={tutorialSectionRef} className={`tutorial-section ${isVisible ? 'visible' : ''}`}>
+  <div className="tutorial-bg" />
+  <div className="tutorial-content">
+    <h2>Tutorial</h2>
+    <div className="video-container">
+      <video className="tutorial-video" controls>
+        <source src={tutorial} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </div>
+  </div>
+</div>
   );
 };
 
