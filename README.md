@@ -1,12 +1,12 @@
-# Dishastra
-### One-stop solution to your navigation problems
+# React + Vite
 
-This is the repository for Dishastra, our navigation solution for inconsistent GPS Feeds. 
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Only the frontend of the website in the form of a landing page has been uploaded to this repo; the backend has been setup locally.
+Currently, two official plugins are available:
 
-**React** has been used to develop the frontend interface.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-To view the frontend locally, clone this repo, navigate to `/src` and and run `npm start`. Note that NodeJS must be installed on your system. 
+## Expanding the ESLint configuration
 
-
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
