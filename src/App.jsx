@@ -15,9 +15,15 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   const globeRef = useRef();
   const [isOverGlobeSphere, setIsOverGlobeSphere] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true); // Start with mobile=true to prevent hydration mismatch
   const [Globe, setGlobe] = useState(null);
   const [CustomCursor, setCustomCursor] = useState(null);
+  const [isClient, setIsClient] = useState(false);
+
+  // Client-side initialization
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Detect mobile screen size and conditionally load heavy components
   useEffect(() => {
@@ -30,24 +36,31 @@ function App() {
         if (!Globe) {
           import('./components/Globe').then((module) => {
             setGlobe(() => module.default);
+          }).catch(error => {
+            console.warn('Failed to load Globe component:', error);
           });
         }
         if (!CustomCursor) {
           import('./components/CustomCursor').then((module) => {
             setCustomCursor(() => module.default);
+          }).catch(error => {
+            console.warn('Failed to load CustomCursor component:', error);
           });
         }
       }
     };
     
-    // Check on mount
-    checkMobile();
-    
-    // Add resize listener
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, [Globe, CustomCursor]);
+    // Ensure this only runs on client-side
+    if (typeof window !== 'undefined' && isClient) {
+      // Check on mount
+      checkMobile();
+      
+      // Add resize listener
+      window.addEventListener('resize', checkMobile);
+      
+      return () => window.removeEventListener('resize', checkMobile);
+    }
+  }, [Globe, CustomCursor, isClient]);
 
   useEffect(() => {
     // Only use Lenis smooth scroll on desktop for performance
@@ -92,8 +105,13 @@ function App() {
 
   // Initial setup for ScrollTrigger and GSAP animations
   useEffect(() => {
-    // Skip all animations on mobile for maximum performance
-    if (isMobile) {
+    // Ensure we're on client-side and DOM is ready
+    if (!isClient) return;
+    
+    // Add a small delay to ensure DOM is fully rendered
+    const initAnimations = () => {
+      // Skip all animations on mobile for maximum performance
+      if (isMobile) {
       // Keep header visible on mobile without animation
       gsap.set('header', {
         y: 0,
@@ -189,11 +207,14 @@ function App() {
     }
 
     // Full desktop animations including globe
-    // Hide header initially
-    gsap.set('header', {
-      y: -100, // Move header up and out of view
-      opacity: 0,
-    });
+    // Hide header initially - with safety check
+    const headerElement = document.querySelector('header');
+    if (headerElement) {
+      gsap.set('header', {
+        y: -100, // Move header up and out of view
+        opacity: 0,
+      });
+    }
 
     // Header reveal animation when leaving hero section
     const headerTl = gsap.timeline({
@@ -204,16 +225,24 @@ function App() {
         scrub: 1,
         onUpdate: (self) => {
           console.log('Header animation progress:', self.progress);
+          // Safety check for header element
+          const headerElement = document.querySelector('header');
+          if (!headerElement) {
+            console.warn('Header element not found during animation');
+          }
         }
       }
     });
 
-    // Animate header into view
-    headerTl.to('header', {
-      y: 0,
-      opacity: 1,
-      ease: 'power2.out',
-    });
+    // Animate header into view - with element check
+    const headerElement2 = document.querySelector('header');
+    if (headerElement2) {
+      headerTl.to('header', {
+        y: 0,
+        opacity: 1,
+        ease: 'power2.out',
+      });
+    }
 
     // Hero text fade out animation when leaving hero section
     const heroTextTl = gsap.timeline({
@@ -224,22 +253,34 @@ function App() {
         scrub: 1,
         onUpdate: (self) => {
           console.log('Hero text fade progress:', self.progress);
+          // Safety checks for elements
+          const heroText = document.querySelector('.hero-text');
+          const heroCta = document.querySelector('.hero-cta');
+          if (!heroText) console.warn('Hero text element not found during animation');
+          if (!heroCta) console.warn('Hero CTA element not found during animation');
         }
       }
     });
 
-    // Fade out hero text and CTA button
-    heroTextTl.to('.hero-text', {
-      opacity: 0,
-      y: -50, // Move up slightly as it fades
-      ease: 'power2.out',
-    });
+    // Fade out hero text and CTA button - with element checks
+    const heroTextElement = document.querySelector('.hero-text');
+    const heroCtaElement = document.querySelector('.hero-cta');
+    
+    if (heroTextElement) {
+      heroTextTl.to('.hero-text', {
+        opacity: 0,
+        y: -50, // Move up slightly as it fades
+        ease: 'power2.out',
+      });
+    }
 
-    heroTextTl.to('.hero-cta', {
-      opacity: 0,
-      y: 50, // Move down slightly as it fades
-      ease: 'power2.out',
-    }, 0); // Start at the same time as hero text
+    if (heroCtaElement) {
+      heroTextTl.to('.hero-cta', {
+        opacity: 0,
+        y: 50, // Move down slightly as it fades
+        ease: 'power2.out',
+      });
+    }
 
     // Globe movement animation - move from center to right when About Us section is reached
     const globeMovementTl = gsap.timeline({
@@ -254,28 +295,34 @@ function App() {
       }
     });
 
-    // Move globe container to the right
-    globeMovementTl.to('.globe-container', {
-      x: '20vw', // Move right by 25% of viewport width
-      ease: 'power2.out', // Faster ease out for quicker movement
-    });
+    // Move globe container to the right - with element check
+    const globeContainer = document.querySelector('.globe-container');
+    if (globeContainer) {
+      globeMovementTl.to('.globe-container', {
+        x: '20vw', // Move right by 25% of viewport width
+        ease: 'power2.out', // Faster ease out for quicker movement
+      });
+    }
 
-    // Separate timeline for gradient transition
-    const gradientTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.content-sections',
-        start: 'top bottom',
-        end: 'top center',
-        scrub: 1,
-      }
-    });
+    // Separate timeline for gradient transition - with element check
+    const gradientElement = document.querySelector('.gradient-transition');
+    if (gradientElement) {
+      const gradientTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.content-sections',
+          start: 'top bottom',
+          end: 'top center',
+          scrub: 1,
+        }
+      });
 
-    // Fade in gradient transition overlay
-    gradientTl.to('.gradient-transition', {
-      opacity: 1,
-      ease: 'power2.inOut',
-      duration: 0.8
-    }, 0);
+      // Fade in gradient transition overlay
+      gradientTl.to('.gradient-transition', {
+        opacity: 1,
+        ease: 'power2.inOut',
+        duration: 0.8
+      }, 0);
+    }
 
     // Animate individual content tiles (special handling for About Us vs others)
     const contentBoxes = document.querySelectorAll('.content-sections > *');
@@ -357,33 +404,50 @@ function App() {
     });
 
     // ScrollTrigger for globe auto-rotation in content sections only
-    const autoRotateTrigger = ScrollTrigger.create({
-      trigger: '.content-sections',
-      start: 'top 90%',
-      end: 'bottom 10%',
-      onEnter: () => {
-        // Only enable if we're entering content sections
-        globeRef.current?.setAutoRotate(true);
-      },
-      onLeaveBack: () => {
-        // When scrolling back to hero, keep auto-rotation on
-        globeRef.current?.setAutoRotate(true);
-      },
-      onLeave: () => {
-        // When leaving content sections (scrolling past them), disable auto-rotation
-        globeRef.current?.setAutoRotate(false);
-      },
-      onEnterBack: () => {
-        // When scrolling back into content sections from below, enable auto-rotation
-        globeRef.current?.setAutoRotate(true);
-      },
-    });
+    const contentSectionsElement = document.querySelector('.content-sections');
+    if (contentSectionsElement) {
+      const autoRotateTrigger = ScrollTrigger.create({
+        trigger: '.content-sections',
+        start: 'top 90%',
+        end: 'bottom 10%',
+        onEnter: () => {
+          // Only enable if we're entering content sections
+          globeRef.current?.setAutoRotate(true);
+        },
+        onLeaveBack: () => {
+          // When scrolling back to hero, keep auto-rotation on
+          globeRef.current?.setAutoRotate(true);
+        },
+        onLeave: () => {
+          // When leaving content sections (scrolling past them), disable auto-rotation
+          globeRef.current?.setAutoRotate(false);
+        },
+        onEnterBack: () => {
+          // When scrolling back into content sections from below, enable auto-rotation
+          globeRef.current?.setAutoRotate(true);
+        },
+      });
+    }
 
     // Cleanup function to kill ScrollTrigger instances on component unmount
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, [isMobile]);
+    
+    };
+
+    // Add a small delay to ensure DOM elements are available
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAnimations);
+    } else {
+      setTimeout(initAnimations, 100);
+    }
+
+    return () => {
+      document.removeEventListener('DOMContentLoaded', initAnimations);
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, [isMobile, isClient]);
 
   return (
     <div className="bg-black">

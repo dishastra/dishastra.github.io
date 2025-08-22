@@ -83,16 +83,29 @@ const CustomCursor = () => {
 
     // Cleanup function
     return () => {
-      window.removeEventListener('mousemove', moveCircle);
-      interactiveElements.forEach(element => {
+      // Remove event listeners safely
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('mousemove', moveCircle);
+      }
+      
+      // Clean up interactive elements event listeners
+      const currentInteractiveElements = document.querySelectorAll('a, button, .get-started-btn, [data-cursor-hover]:not(.globe-container)');
+      currentInteractiveElements.forEach(element => {
         element.removeEventListener('mouseenter', expandCursor);
         element.removeEventListener('mouseleave', shrinkCursor);
       });
-      if (globeContainer) {
-        globeContainer.removeEventListener('mouseenter', disableInversion);
-        globeContainer.removeEventListener('mouseleave', enableInversion);
+      
+      // Clean up globe container event listeners
+      const currentGlobeContainer = document.querySelector('.globe-container');
+      if (currentGlobeContainer) {
+        currentGlobeContainer.removeEventListener('mouseenter', disableInversion);
+        currentGlobeContainer.removeEventListener('mouseleave', enableInversion);
       }
-      document.body.style.cursor = 'auto';
+      
+      // Restore default cursor
+      if (document.body) {
+        document.body.style.cursor = 'auto';
+      }
     };
   }, []);
 
