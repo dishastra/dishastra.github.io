@@ -1,7 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Globe from './components/Globe';
 import Header from './components/Header';
 import Lenis from 'lenis';
 import './App.css';
@@ -10,51 +9,186 @@ import AboutUs from './components/AboutUs';
 import OurVision from './components/OurVision';
 import OurProduct from './components/OurProduct';
 import Contact from './components/Contact';
-import CustomCursor from './components/CustomCursor';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const globeRef = useRef();
   const [isOverGlobeSphere, setIsOverGlobeSphere] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [Globe, setGlobe] = useState(null);
+  const [CustomCursor, setCustomCursor] = useState(null);
+
+  // Detect mobile screen size and conditionally load heavy components
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 600;
+      setIsMobile(mobile);
+      
+      // Only import heavy components on non-mobile devices
+      if (!mobile) {
+        if (!Globe) {
+          import('./components/Globe').then((module) => {
+            setGlobe(() => module.default);
+          });
+        }
+        if (!CustomCursor) {
+          import('./components/CustomCursor').then((module) => {
+            setCustomCursor(() => module.default);
+          });
+        }
+      }
+    };
+    
+    // Check on mount
+    checkMobile();
+    
+    // Add resize listener
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, [Globe, CustomCursor]);
 
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 2.5,        // Duration of scroll animation (default: 1.2)
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing function
-      smoothWheel: true,    // Smooth wheel scrolling
-      smoothTouch: false,   // Disable smooth touch scrolling (can be jarring on mobile)
-      wheelMultiplier: 1,   // Wheel sensitivity (default: 1)
-      touchMultiplier: 2,   // Touch sensitivity (default: 2)
-      infinite: false,      // Infinite scrolling
-    });
-    
-    function raf(time) {
-      lenis.raf(time);
+    // Only use Lenis smooth scroll on desktop for performance
+    if (!isMobile) {
+      const lenis = new Lenis({
+        duration: 2.5,        // Duration of scroll animation (default: 1.2)
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Custom easing function
+        smoothWheel: true,    // Smooth wheel scrolling
+        smoothTouch: false,   // Disable smooth touch scrolling (can be jarring on mobile)
+        wheelMultiplier: 1,   // Wheel sensitivity (default: 1)
+        touchMultiplier: 2,   // Touch sensitivity (default: 2)
+        infinite: false,      // Infinite scrolling
+      });
+      
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
       requestAnimationFrame(raf);
+      
+      // Cleanup function
+      return () => {
+        lenis.destroy();
+      };
     }
-    requestAnimationFrame(raf);
-    
-    // Cleanup function
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
+  }, [isMobile]);
 
   // Hero section auto-rotation logic
   useEffect(() => {
-    // Start auto-rotation after 2 seconds
-    const heroAutoRotateTimeout = setTimeout(() => {
-      globeRef.current?.setAutoRotate(true);
-    }, 2000);
+    // Only set auto-rotation on non-mobile devices
+    if (!isMobile && Globe) {
+      // Start auto-rotation after 2 seconds
+      const heroAutoRotateTimeout = setTimeout(() => {
+        globeRef.current?.setAutoRotate(true);
+      }, 2000);
 
-    return () => {
-      clearTimeout(heroAutoRotateTimeout);
-    };
-  }, []);
+      return () => {
+        clearTimeout(heroAutoRotateTimeout);
+      };
+    }
+  }, [isMobile, Globe]);
 
   // Initial setup for ScrollTrigger and GSAP animations
   useEffect(() => {
+    // Skip all animations on mobile for maximum performance
+    if (isMobile) {
+      // Keep header visible on mobile without animation
+      gsap.set('header', {
+        y: 0,
+        opacity: 1,
+      });
+
+      // Ensure About Us section is visible on mobile (override any hidden state)
+      const fixAboutUsVisibility = () => {
+        const aboutUsSection = document.querySelector('.content-sections > *:first-child');
+        if (aboutUsSection) {
+          aboutUsSection.style.opacity = '1';
+          aboutUsSection.style.visibility = 'visible';
+          aboutUsSection.style.transform = 'translateX(0)';
+          aboutUsSection.style.display = 'flex';
+        }
+      };
+      
+      // Run immediately and after a short delay to ensure DOM is ready
+      fixAboutUsVisibility();
+      setTimeout(fixAboutUsVisibility, 100);
+
+      // Ensure hero text is visible on mobile
+      const fixHeroTextVisibility = () => {
+        const heroText = document.querySelector('.hero-text');
+        if (heroText) {
+          heroText.style.opacity = '1';
+          heroText.style.visibility = 'visible';
+          heroText.style.display = 'block';
+        }
+      };
+      
+      fixHeroTextVisibility();
+      setTimeout(fixHeroTextVisibility, 100);
+
+      // Re-enable color transitions for mobile sections
+      const contentBoxes = document.querySelectorAll('.content-sections > *');
+      contentBoxes.forEach((box, index) => {
+        ScrollTrigger.create({
+          trigger: box,
+          start: 'top 50%', // Trigger when section center reaches viewport center
+          end: 'bottom 50%', // End when section center leaves viewport center
+          onEnter: () => {
+            console.log(`Mobile: Tile ${index + 1} entering view - color inversion`);
+            box.classList.add('active');
+          },
+          onLeave: () => {
+            console.log(`Mobile: Tile ${index + 1} leaving view - color normal`);
+            box.classList.remove('active');
+          },
+          onEnterBack: () => {
+            console.log(`Mobile: Tile ${index + 1} entering back - color inversion`);
+            box.classList.add('active');
+          },
+          onLeaveBack: () => {
+            console.log(`Mobile: Tile ${index + 1} leaving back - color normal`);
+            box.classList.remove('active');
+          }
+        });
+      });
+
+      // Prevent scrolling beyond Contact section on mobile
+      const preventOverScroll = () => {
+        const contactSection = document.querySelector('.content-sections > *:last-child');
+        if (contactSection) {
+          const contactRect = contactSection.getBoundingClientRect();
+          const contactBottom = window.pageYOffset + contactRect.bottom;
+          const maxScroll = contactBottom - window.innerHeight;
+          
+          // Set document height to prevent over-scrolling
+          document.body.style.height = `${contactBottom}px`;
+          
+          // Prevent scrolling beyond contact
+          const currentScroll = window.pageYOffset;
+          if (currentScroll > maxScroll) {
+            window.scrollTo(0, maxScroll);
+          }
+        }
+      };
+
+      // Set initial constraints
+      setTimeout(() => {
+        preventOverScroll();
+      }, 200);
+
+      window.addEventListener('scroll', preventOverScroll);
+      window.addEventListener('resize', preventOverScroll);
+      
+      return () => {
+        window.removeEventListener('scroll', preventOverScroll);
+        window.removeEventListener('resize', preventOverScroll);
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      };
+    }
+
+    // Full desktop animations including globe
     // Hide header initially
     gsap.set('header', {
       y: -100, // Move header up and out of view
@@ -249,11 +383,11 @@ function App() {
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <div className="bg-black">
-      <CustomCursor />
+      {!isMobile && CustomCursor && <CustomCursor />}
       <Header />
 
       <div className="main-container">
@@ -264,7 +398,7 @@ function App() {
           </div>
           
           <div className="globe-container" data-cursor-hover>
-            <Globe ref={globeRef} onGlobeHoverChange={setIsOverGlobeSphere} />
+            {!isMobile && Globe && <Globe ref={globeRef} onGlobeHoverChange={setIsOverGlobeSphere} />}
           </div>
 
           {/* Get Started button */}
@@ -275,7 +409,9 @@ function App() {
               rel="noopener noreferrer"
               className="get-started-btn"
             >
-              GET STARTED
+              <span className="shadow"></span>
+              <span className="edge"></span>
+              <span className="front">GET STARTED</span>
             </a>
           </div>
         </section>

@@ -35,6 +35,107 @@ header {
   background: #000;
 }
 
+/* Desktop Navigation - hide on mobile */
+.desktop-nav {
+  display: flex;
+}
+
+@media (max-width: 45rem) { /* 720px */
+  .desktop-nav {
+    display: none;
+  }
+}
+
+/* Mobile Hamburger - show only on mobile */
+.mobile-hamburger {
+  display: none !important;
+}
+
+@media (max-width: 45rem) { /* 720px */
+  .mobile-hamburger {
+    display: flex !important;
+  }
+}
+
+/* Mobile Menu Styling */
+.mobile-menu {
+  backdrop-filter: blur(0.625rem); /* 10px */
+}
+
+.mobile-menu a {
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-menu a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0.125rem; /* 2px */
+  background: white;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.mobile-menu a:hover::before {
+  width: 100%;
+}
+
+/* Hamburger animation improvements */
+.hamburger-line {
+  display: block;
+  width: 1.5rem;
+  height: 0.125rem;
+  background-color: white;
+  transform-origin: center;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0.0625rem; /* Small border radius for smoother look */
+}
+
+/* Ensure hamburger button is properly styled */
+.mobile-hamburger {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+
+.mobile-hamburger:focus {
+  outline: none;
+}
+
+.mobile-hamburger:focus-visible {
+  outline: none;
+}
+
+/* Mobile menu responsive adjustments */
+@media (max-width: 48rem) { /* 768px */
+  .mobile-menu nav {
+    gap: 2rem !important;
+  }
+  
+  .mobile-menu a {
+    font-size: 1.25rem !important;
+    padding: 0.75rem !important;
+  }
+}
+
+@media (max-width: 30rem) { /* 480px */
+  .mobile-menu a {
+    font-size: 1.125rem !important;
+    padding: 0.5rem !important;
+  }
+}
+
 /* Main container to establish a stacking context */
 .main-container {
   position: relative;
@@ -44,10 +145,10 @@ header {
 /* Globe Hero Section - Fixed positioning for GSAP control */
 .globe-hero-section {
   position: fixed;
-  top: 80px; /* Below the header */
+  top: 5rem; /* Below the header */
   left: 0;
   width: 100%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 5rem);
   z-index: 5;
   background-color: #000;
 }
@@ -75,19 +176,21 @@ header {
   background: linear-gradient(
     to top,
     #000 0%,
-    rgba(0, 0, 0, 0.8) 30%,
-    rgba(0, 0, 0, 0.4) 60%,
+    rgba(0, 0, 0, 0.8) 20%,
+    rgba(0, 0, 0, 0.4) 50%,
     transparent 100%
   );
+
   pointer-events: none;
   z-index: 1;
 }
 
 .hero-text h1 {
   font-size: clamp(1.2rem, 2.8vw, 3rem);
-  font-weight: 500;
+  font-weight: 400;
   margin: 0;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  word-spacing: 0.1em;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
   padding: 0 clamp(1rem, 2vw, 2rem);
 }
@@ -102,39 +205,94 @@ header {
 }
 
 .get-started-btn {
-  display: inline-block;
-  background-color: #dc2626; /* Red background */
-  color: white;
-  text-decoration: none;
-  padding: clamp(0.6rem, 1.2vw, 1rem) clamp(1.2rem, 2.5vw, 2rem); /* Dynamic padding */
-  font-size: clamp(1rem, 1.8vw, 1.4rem); /* Dynamic font size */
-  font-weight: 500;
-  border-radius: clamp(30px, 8vw, 50px); /* Dynamic border radius */
-  border: 2px solid white; /* White border */
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
   cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.get-started-btn .shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background: hsl(0deg 0% 0% / 0.25);
+  will-change: transform;
+  transform: translateY(2px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.get-started-btn .edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(
+    to left,
+    hsl(0deg 0% 70%) 0%,
+    hsl(0deg 0% 80%) 8%,
+    hsl(0deg 0% 80%) 92%,
+    hsl(0deg 0% 70%) 100%
+  );
+  transition: background 300ms ease;
+}
+
+.get-started-btn .front {
+  display: block;
+  position: relative;
+  padding: 0.55em 1em;
+  border-radius: 5px;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  word-spacing: 0.05em;
+  color: black;
+  background: white;
+  will-change: transform;
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1), background 300ms ease, color 300ms ease;
 }
 
 .get-started-btn:hover {
-  background-color: #b91c1c;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+  filter: brightness(110%);
 }
 
-.get-started-btn:active {
-  transform: translateY(0);
+.get-started-btn:hover .front {
+  transform: translateY(-6px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.get-started-btn:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.get-started-btn:hover .shadow {
+  transform: translateY(4px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.get-started-btn:active .shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.get-started-btn:focus:not(:focus-visible) {
+  outline: none;
 }
 
 @media (max-width: 768px) {
   .hero-cta {
     bottom: clamp(12vh, 18vh, 20vh);
-  }
-  
-  .get-started-btn {
-    padding: clamp(0.7rem, 2vw, 0.9rem) clamp(1.3rem, 4vw, 1.7rem);
-    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    border-radius: clamp(25px, 6vw, 40px);
   }
 }
 
@@ -299,18 +457,84 @@ header {
 }
 
 @media (max-width: 768px) {
+  /* Ensure body doesn't have extra height on mobile */
+  body {
+    overflow-x: hidden;
+  }
+  
   .content-sections {
     width: 100vw;
     margin-top: 100vh;
+    min-height: auto; /* Remove fixed min-height */
+    height: auto; /* Let content determine height */
   }
   
   .globe-container {
     display: none; /* Hide globe on mobile for better UX */
   }
   
+  /* Hide gradient transition on mobile to prevent extra scrollable area */
+  .gradient-transition {
+    display: none;
+  }
+  
   .content-sections > * {
     min-height: 80vh;
     padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
+  }
+  
+  /* Make Contact section (last child) the final stopping point */
+  .content-sections > *:last-child {
+    min-height: 100vh; /* Full height for Contact */
+    margin-bottom: 0; /* No extra margin after Contact */
+    padding-bottom: 2rem; /* Small padding at bottom */
+  }
+  
+  /* Fix About Us visibility on mobile - override GSAP initial state */
+  .content-sections > *:first-child {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(0) !important;
+    display: flex !important;
+  }
+  
+  /* Fix hero text positioning on mobile */
+  .hero-text {
+    top: 40% !important; /* Center vertically on mobile */
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important; /* Perfect centering */
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: 90% !important; /* Add some padding from screen edges */
+    max-width: 500px !important; /* Prevent text from being too wide on larger phones */
+  }
+  
+  /* Remove gradient on hero text for mobile */
+  .hero-text::after {
+    display: none !important;
+  }
+  
+  .hero-text h1 {
+    font-size: clamp(2rem, 5.5vw, 3rem) !important; /* Larger, more prominent text */
+    font-weight: 700 !important; /* Make it bold */
+    line-height: 1.3 !important; /* Better readability */
+    margin: 0 !important;
+    text-align: center !important;
+    letter-spacing: 0.02em !important; /* Slightly more letter spacing for impact */
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9) !important; /* Stronger shadow for better contrast */
+    color: #ffffff !important; /* Ensure pure white text */
+  }
+  
+  /* Adjust CTA button positioning for mobile */
+  .hero-cta {
+    bottom: 40vh !important; /* Position it below the centered text */
+    transform: translateX(-50%) !important;
+  }
+  
+  /* Make header logo smaller on mobile */
+  header img {
+    height: 6vh !important;
+    margin-left: -1em;
   }
   
   .content-sections h2 {
