@@ -199,7 +199,7 @@ const Header = () => {
       {/* Mobile Menu Overlay */}
       <div
         ref={mobileMenuRef}
-        className="mobile-menu fixed bg-black border-l border-white/20"
+        className="mobile-menu fixed bg-black border border-white/20"
         style={{
           top: '5rem',
           right: 0,

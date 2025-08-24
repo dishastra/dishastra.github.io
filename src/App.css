@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   width: 100vw;
-  min-height: 100vh;
+  height: auto; /* Let content determine height */
 }
 
 html {
@@ -19,6 +19,7 @@ body {
   font-family: 'Roboto',
     sans-serif;
   overflow-x: hidden;
+  height: auto; /* Let content determine height */
 }
 
 body, * {
@@ -336,7 +337,7 @@ header {
   display: flex;
   flex-direction: column;
   width: 41vw; /* Take up 1/3 of screen width */
-  min-height: 400vh; /* Enough height for all tiles */
+  max-height: fit-content !important;
 }
 
 /* Individual content tiles in grid layout */
@@ -359,6 +360,12 @@ header {
   transition: all 0.6s ease;
 }
 
+/* Contact section (last child) - ensure it's the final stopping point */
+.content-sections > *:last-child {
+  margin-bottom: 0; /* Remove any extra margin */
+  padding-bottom: clamp(2rem, 4vw, 4rem); /* Consistent padding */
+}
+
 /* About Us tile - special styling for fade animation */
 .content-sections > *:first-child {
   opacity: 0; /* Start invisible for GSAP animation */
@@ -373,7 +380,7 @@ header {
   border-color: #000;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  filter: blur(0.5px); /* Additional blur on the element itself */
+  /* filter: blur(0.5px); Additional blur on the element itself */
   position: relative; /* Ensure positioning context for pseudo-element */
 }
 
@@ -527,8 +534,9 @@ header {
   
   /* Adjust CTA button positioning for mobile */
   .hero-cta {
-    bottom: 40vh !important; /* Position it below the centered text */
-    transform: translateX(-50%) !important;
+    top: calc(40% + 8rem);
+    /* bottom: 40vh !important; /* Position it below the centered text */
+    /*transform: translateX(-50%) !important; */
   }
   
   /* Make header logo smaller on mobile */
@@ -538,12 +546,14 @@ header {
   }
   
   .content-sections h2 {
-    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
-    margin-bottom: clamp(0.8rem, 2.5vw, 1.3rem);
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin-bottom: clamp(1.2rem, 3vw, 2rem);
+    line-height: 1.1;
   }
   
   .content-sections p {
-    font-size: clamp(0.8rem, 2.2vw, 1rem);
+    font-size: clamp(1.1rem, 3.2vw, 1.4rem);
+    line-height: 1.5;
     max-width: 100%;
   }
 }
