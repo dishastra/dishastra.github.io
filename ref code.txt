@@ -1,0 +1,713 @@
+import React, { useState, useEffect } from 'react';
+
+/**
+ * MarqueeBanner (Canvas Name: Component1920wLight)
+ * Production-ready React component transformed from Figma design.
+ */
+
+export const MarqueeBanner: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const handleJoinWaitlist = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setTimeout(() => {
+      alert(`Joined with: ${email}`);
+      setIsSubmitting(false);
+      setEmail('');
+    }, 1000);
+  };
+  return <div className="Component1920wLight" style={{
+    width: '100%',
+    minHeight: '100vh',
+    backgroundColor: '#000000',
+    boxSizing: 'border-box',
+    overflowX: 'hidden',
+    position: 'relative',
+    fontFamily: '"Inter", sans-serif'
+  }}>
+      <style>
+        {`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 30s linear infinite;
+          }
+          .button-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+            filter: brightness(1.1);
+          }
+          .social-hover:hover {
+            background-color: rgba(255, 255, 255, 0.15) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+          }
+          input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+          }
+          input:focus {
+            outline: none;
+            border-color: rgba(138, 212, 90, 0.5) !important;
+            background-color: rgba(255, 255, 255, 0.08) !important;
+          }
+        `}
+      </style>
+
+      {/* --- HERO SECTION --- */}
+      <section style={{
+      width: '100%',
+      minHeight: '1379px',
+      position: 'relative',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    }}>
+        <img src="https://storage.googleapis.com/storage.magicpath.ai/user/427369152559349760/figma-assets/fc154ebb-d305-42af-ab95-b1e934a091b3.png" alt="Hero Background" style={{
+        width: '100%',
+        height: '1379px',
+        objectFit: 'cover',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 0
+      }} />
+        <div style={{
+        width: '100%',
+        height: '1379px',
+        background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.65) 18%, rgba(0, 0, 0, 0.45) 35%, rgba(0, 0, 0, 0.20) 55%, rgba(0, 0, 0, 0.10) 75%, rgba(0, 0, 0, 0.40) 100%)',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 1
+      }} />
+        
+        <div style={{
+        zIndex: 2,
+        position: 'relative',
+        width: '100%',
+        maxWidth: '1140px',
+        padding: '245px 40px 0',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center'
+      }}>
+          <h1 style={{
+          color: '#FFFFFF',
+          fontSize: '68px',
+          fontFamily: '"Fraunces", serif',
+          fontWeight: 400,
+          lineHeight: '72.8px',
+          letterSpacing: '-0.6px',
+          margin: '0 0 22px 0',
+          maxWidth: '934px'
+        }}>
+            The intelligent travel companion<br />for every journey you take.
+          </h1>
+          <p style={{
+          color: 'rgba(255, 255, 255, 0.88)',
+          fontSize: '25px',
+          fontFamily: '"Fraunces", serif',
+          fontWeight: 300,
+          lineHeight: '36.3px',
+          letterSpacing: '-0.3px',
+          margin: '0 0 26px 0',
+          maxWidth: '780px'
+        }}>
+            Your journey, our priority. Powered by AI, tailored for you.
+          </p>
+          <button className="button-hover" style={{
+          padding: '14px 32px',
+          backgroundColor: '#E4E4E7',
+          color: '#18181B',
+          borderRadius: '100px',
+          border: 'none',
+          fontSize: '16px',
+          fontWeight: 500,
+          cursor: 'pointer',
+          boxShadow: '0px 4px 14px rgba(0, 0, 0, 0.1)',
+          transition: 'all 0.2s ease'
+        }}>
+            Join the Beta
+          </button>
+
+          <div style={{
+          marginTop: '54px',
+          width: '100%',
+          maxWidth: '948px',
+          position: 'relative'
+        }}>
+            <div style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.002)',
+            borderRadius: '14px',
+            overflow: 'hidden',
+            boxShadow: '0px 4px 18px rgba(0, 0, 0, 0.4), 0px 28px 64px rgba(0, 0, 0, 0.6), 0px 0px 0px 1px rgba(255, 255, 255, 0.09)'
+          }}>
+              <img src="https://storage.googleapis.com/storage.magicpath.ai/user/427369152559349760/figma-assets/acbaef86-2724-480a-b72e-0f58755a04b8.png" alt="Dashboard" style={{
+              width: '100%',
+              display: 'block',
+              height: 'auto'
+            }} />
+            </div>
+          </div>
+        </div>
+
+        {/* Hills decoration */}
+        <div style={{
+        width: '100%',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        zIndex: 4,
+        height: '700px'
+      }}>
+          <img src="https://storage.googleapis.com/storage.magicpath.ai/user/427369152559349760/figma-assets/7060f25b-2826-49f1-96b2-e5a962967e3e.png" alt="Landscape" style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover'
+        }} />
+          <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(180deg, rgba(4, 4, 4, 0) 0%, rgba(4, 4, 4, 0) 50%, rgba(4, 4, 4, 0.3) 75%, rgba(4, 4, 4, 0.85) 92%, rgba(4, 4, 4, 1) 100%)'
+        }} />
+        </div>
+      </section>
+
+      {/* --- INTRO / FEATURES SECTION --- */}
+      <section style={{
+      backgroundColor: '#040404',
+      padding: '100px 40px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    }}>
+        <div style={{
+        maxWidth: '960px',
+        width: '100%',
+        textAlign: 'center',
+        marginBottom: '100px'
+      }}>
+          <p style={{
+          fontSize: '42.2px',
+          fontWeight: 500,
+          lineHeight: '52.8px',
+          letterSpacing: '-0.96px',
+          fontFamily: '"Outfit", sans-serif',
+          color: 'rgba(255, 255, 255, 0.15)',
+          marginBottom: '80px'
+        }}>
+            <span style={{
+            color: 'rgba(255, 255, 255, 0.15)'
+          }}>Dishastra is a conversational travel planner that turns a single prompt into a fully planned adventure. Just describe your ideal getaway, and watch it generate an optimized, day-by-day itinerary in seconds.</span>
+          </p>
+          <p style={{
+          fontSize: '42.2px',
+          fontWeight: 500,
+          lineHeight: '52.8px',
+          letterSpacing: '-0.96px',
+          fontFamily: '"Outfit", sans-serif',
+          color: 'rgba(255, 255, 255, 0.15)',
+          marginBottom: '80px'
+        }}>
+            Designed to be effortlessly intuitive, the platform features a clean Minimalist Mode. It strips away complex settings, providing a distraction-free interface that makes advanced trip planning accessible to absolutely everyone.
+          </p>
+          <p style={{
+          fontSize: '44px',
+          fontWeight: 500,
+          lineHeight: '55px',
+          letterSpacing: '-1px',
+          fontFamily: '"Outfit", sans-serif',
+          color: '#FFFFFF'
+        }}>
+            From initial discovery to on-the-go guidance, Dishastra handles the heavy lifting. Export your complete itinerary with a single tap and focus entirely on the adventure, even when you drop off the grid.
+          </p>
+        </div>
+
+        {/* LOGO MARQUEE */}
+        <div style={{
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        margin: '35px 0 90px'
+      }}>
+          <span style={{
+          fontSize: '17.5px',
+          fontWeight: 700,
+          letterSpacing: '4.5px',
+          textTransform: 'uppercase',
+          marginBottom: '105px',
+          background: 'linear-gradient(180deg, #FFFFFF 0%, #767682 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          fontFamily: '"Outfit", sans-serif'
+        }}>
+            POWERED BY
+          </span>
+          <img src="https://storage.googleapis.com/storage.magicpath.ai/user/427369152559349760/figma-assets/1eb5cd2b-2610-43e0-bb20-85aeecaa3de8.svg" alt="Partners" style={{
+          width: '100%',
+          maxWidth: '1400px',
+          height: '40px'
+        }} />
+        </div>
+
+        {/* PREMIUM CARDS */}
+        <div style={{
+        width: '100%',
+        maxWidth: '1472px',
+        padding: '0 32px'
+      }}>
+          <header style={{
+          marginBottom: '120px'
+        }}>
+            <h2 style={{
+            fontSize: '64px',
+            color: '#E4E4E7',
+            fontFamily: '"Fraunces", serif',
+            fontWeight: 400,
+            lineHeight: '68.5px',
+            letterSpacing: '-0.6px',
+            margin: '0 0 27px 0',
+            maxWidth: '1000px'
+          }}>
+              Your intelligent travel companion is officially available in Closed Beta.
+            </h2>
+            <p style={{
+            fontSize: '20px',
+            color: 'rgba(255, 255, 255, 0.85)',
+            lineHeight: '29px',
+            maxWidth: '600px',
+            margin: 0
+          }}>
+              Stop assembling your travel plans piece by piece. Let us do the planning for you, so you don't have to juggle between blogs, maps, and booking sites across multiple tabs.
+            </p>
+          </header>
+
+          <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+          borderTop: '1px solid #2E3038',
+          borderLeft: '1px solid #2E3038'
+        }}>
+            {/* Feature 1 */}
+            <div style={{
+            padding: '32px',
+            borderRight: '1px solid #2E3038',
+            borderBottom: '1px solid #2E3038',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+              <span style={{
+              fontSize: '20px',
+              fontWeight: 600,
+              color: '#E4E4E7',
+              fontFamily: '"Outfit", sans-serif',
+              textAlign: 'center',
+              marginBottom: '24px'
+            }}>Neural Intelligence</span>
+              <div style={{
+              height: '200px',
+              margin: '0 0 30px 0',
+              overflow: 'hidden',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'relative'
+            }}>
+                 <img src="https://storage.googleapis.com/storage.magicpath.ai/user/427369152559349760/figma-assets/633e323e-688c-458c-84f3-854a67f1fc2a.svg" alt="Lottie Icon" style={{
+                width: '150px'
+              }} />
+              </div>
+              <p style={{
+              color: '#D4D4D6',
+              fontSize: '16px',
+              lineHeight: '22.4px',
+              fontWeight: 500,
+              margin: 0
+            }}>
+                Powered by intelligent travel planners. Instantly transform your raw ideas into highly optimized, executable schedules.
+              </p>
+            </div>
+            {/* Feature 2 */}
+            <div style={{
+            padding: '32px',
+            borderRight: '1px solid #2E3038',
+            borderBottom: '1px solid #2E3038',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+              <span style={{
+              fontSize: '20px',
+              fontWeight: 600,
+              color: '#E4E4E7',
+              fontFamily: '"Outfit", sans-serif',
+              textAlign: 'center',
+              marginBottom: '24px'
+            }}>Always Connected</span>
+              <div style={{
+              height: '200px',
+              margin: '0 0 30px 0',
+              overflow: 'hidden',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+                 <img src="https://storage.googleapis.com/storage.magicpath.ai/user/427369152559349760/figma-assets/ffa57196-1c33-4294-9a76-65b301eb6330.svg" alt="Lottie Icon" style={{
+                width: '150px'
+              }} />
+              </div>
+              <p style={{
+              color: '#D4D4D6',
+              fontSize: '16px',
+              lineHeight: '22.4px',
+              fontWeight: 500,
+              margin: 0
+            }}>
+                Reliable offline access. Export your entire itinerary with one tap and access it anywhere, even without internet.
+              </p>
+            </div>
+            {/* Feature 3 */}
+            <div style={{
+            padding: '32px',
+            borderRight: '1px solid #2E3038',
+            borderBottom: '1px solid #2E3038',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+              <span style={{
+              fontSize: '20px',
+              fontWeight: 600,
+              color: '#E4E4E7',
+              fontFamily: '"Outfit", sans-serif',
+              textAlign: 'center',
+              marginBottom: '24px'
+            }}>Social Discovery</span>
+              <div style={{
+              height: '200px',
+              margin: '0 0 30px 0',
+              overflow: 'hidden',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+                 <img src="https://storage.googleapis.com/storage.magicpath.ai/user/427369152559349760/figma-assets/7d95c2d5-da91-43c7-9814-e196c3e0aad6.svg" alt="Lottie Icon" style={{
+                width: '150px'
+              }} />
+              </div>
+              <p style={{
+              color: '#D4D4D6',
+              fontSize: '16px',
+              lineHeight: '22.4px',
+              fontWeight: 500,
+              margin: 0
+            }}>
+                Simpler to discover. Instantly extract locations from Instagram Reels, with support for other platforms coming soon.
+              </p>
+            </div>
+            {/* Feature 4 */}
+            <div style={{
+            padding: '32px',
+            borderRight: '1px solid #2E3038',
+            borderBottom: '1px solid #2E3038',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+              <span style={{
+              fontSize: '20px',
+              fontWeight: 600,
+              color: '#E4E4E7',
+              fontFamily: '"Outfit", sans-serif',
+              textAlign: 'center',
+              marginBottom: '24px'
+            }}>Interactive Map</span>
+              <div style={{
+              height: '200px',
+              margin: '0 0 30px 0',
+              overflow: 'hidden',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+                 <img src="https://storage.googleapis.com/storage.magicpath.ai/user/427369152559349760/figma-assets/551aa063-a645-4040-bb4e-bba563f7e275.svg" alt="Lottie Icon" style={{
+                width: '150px'
+              }} />
+              </div>
+              <p style={{
+              color: '#D4D4D6',
+              fontSize: '16px',
+              lineHeight: '22.4px',
+              fontWeight: 500,
+              margin: 0
+            }}>
+                Experience the world in real-time. Seamlessly search, filter, and discover live events across the globe.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- WAITLIST SECTION --- */}
+      <section style={{
+      backgroundColor: '#000000',
+      padding: '120px 0',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      overflow: 'hidden'
+    }}>
+        {/* Animated Marquee */}
+        <div style={{
+        width: '100%',
+        marginBottom: '80px',
+        borderTop: '1px solid rgba(255,255,255,0.05)',
+        borderBottom: '1px solid rgba(255,255,255,0.05)',
+        padding: '20px 0'
+      }}>
+          <div className="animate-marquee">
+            {[...Array(6)].map((_, i) => <div key={i} style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '60px',
+            padding: '0 30px'
+          }}>
+                <span style={{
+              color: '#F1F1F1',
+              fontSize: '100px',
+              fontWeight: 700,
+              fontFamily: '"Outfit", sans-serif',
+              letterSpacing: '-2px'
+            }}>Join the waitlist</span>
+                <span style={{
+              color: '#8AD45A',
+              fontSize: '50px'
+            }}>✦</span>
+                <span style={{
+              color: '#F1F1F1',
+              fontSize: '100px',
+              fontWeight: 700,
+              fontFamily: '"Outfit", sans-serif',
+              letterSpacing: '-2px'
+            }}>What are you waiting for?</span>
+                <span style={{
+              color: '#8AD45A',
+              fontSize: '50px'
+            }}>✦</span>
+              </div>)}
+          </div>
+        </div>
+
+        {/* Waitlist Form */}
+        <div style={{
+        maxWidth: '580px',
+        width: 'calc(100% - 40px)',
+        backgroundColor: '#040406',
+        border: '1px solid #2E3038',
+        borderRadius: '24px',
+        padding: '40px',
+        boxShadow: '0px 30px 60px rgba(0, 0, 0, 0.5)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+      }}>
+          <p style={{
+          color: 'rgba(255, 255, 255, 0.7)',
+          fontSize: '16px',
+          lineHeight: '25.6px',
+          textAlign: 'center',
+          marginBottom: '32px'
+        }}>
+            Join other travelers already on the waitlist.<br />Spots are limited and granted on a rolling basis.
+          </p>
+          <form onSubmit={handleJoinWaitlist} style={{
+          display: 'flex',
+          gap: '12px',
+          width: '100%',
+          flexWrap: 'wrap'
+        }}>
+            <input type="email" required placeholder="name@example.com" value={email} onChange={e => setEmail(e.target.value)} style={{
+            flex: 1,
+            minWidth: '200px',
+            height: '56px',
+            backgroundColor: 'rgba(255, 255, 255, 0.04)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '12px',
+            padding: '0 20px',
+            color: '#FFFFFF',
+            fontSize: '15.4px',
+            transition: 'all 0.2s ease'
+          }} />
+            <button type="submit" disabled={isSubmitting} className="button-hover" style={{
+            height: '56px',
+            padding: '0 32px',
+            backgroundColor: '#8AD45A',
+            color: '#18181B',
+            borderRadius: '12px',
+            border: 'none',
+            fontSize: '16px',
+            fontWeight: 600,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            whiteSpace: 'nowrap',
+            transition: 'all 0.2s ease',
+            opacity: isSubmitting ? 0.7 : 1
+          }}>
+              <img src="https://storage.googleapis.com/storage.magicpath.ai/user/427369152559349760/figma-assets/5bae7674-7850-46e3-87fe-9403d3e0ec46.svg" alt="" style={{
+              width: '20px'
+            }} />
+              {isSubmitting ? 'JOINING...' : 'JOIN THE WAITLIST'}
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* --- FOOTER --- */}
+      <footer style={{
+      width: '100%',
+      position: 'relative',
+      overflow: 'hidden',
+      backgroundColor: '#030303',
+      paddingTop: '140px'
+    }}>
+        <img src="https://storage.googleapis.com/storage.magicpath.ai/user/427369152559349760/figma-assets/5b60708a-476c-41c3-86f0-2e2e9811d1e9.jpg" alt="Footer Sky" style={{
+        width: '100%',
+        height: '1050px',
+        objectFit: 'cover',
+        position: 'absolute',
+        top: 0,
+        left: 0
+      }} />
+        <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        background: 'linear-gradient(180deg, #030303 0%, rgba(3, 3, 3, 0.6) 18%, rgba(3, 3, 3, 0.35) 45%, rgba(3, 3, 3, 0.2) 65%, rgba(3, 3, 3, 0.6) 85%, #030303 100%)'
+      }} />
+        
+        <div style={{
+        position: 'relative',
+        zIndex: 5,
+        textAlign: 'center',
+        marginBottom: '80px'
+      }}>
+          <p style={{
+          color: '#FFFFFF',
+          fontSize: '23.2px',
+          fontWeight: 500,
+          lineHeight: '36px',
+          letterSpacing: '-0.46px',
+          maxWidth: '538px',
+          margin: '0 auto'
+        }}>
+            Your AI-powered conversational travel companion.<br />Perfectly routed adventures in seconds.
+          </p>
+        </div>
+
+        <div style={{
+        position: 'relative',
+        zIndex: 4,
+        width: '100%',
+        height: '500px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end'
+      }}>
+          <h2 style={{
+          fontSize: 'min(20vw, 374px)',
+          fontWeight: 800,
+          lineHeight: '0.8',
+          letterSpacing: '-20.6px',
+          textAlign: 'center',
+          margin: 0,
+          textTransform: 'uppercase',
+          background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.92) 14%, rgba(255, 255, 255, 0.58) 42%, rgba(240, 210, 95, 0.46) 65%, rgba(205, 170, 60, 0.30) 82%, rgba(155, 125, 35, 0.12) 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          zIndex: 1,
+          position: 'relative'
+        }}>
+            DISHASTRA
+          </h2>
+          <div style={{
+          width: '100%',
+          height: '600px',
+          position: 'absolute',
+          bottom: '-150px',
+          left: 0
+        }}>
+             <img src="https://storage.googleapis.com/storage.magicpath.ai/user/427369152559349760/figma-assets/52020a56-adba-4599-8eb9-f28a9a1685ec.png" alt="Mountains" style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }} />
+             <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(180deg, rgba(3, 3, 3, 0) 0%, rgba(3, 3, 3, 0) 65%, rgba(3, 3, 3, 0.3) 80%, rgba(3, 3, 3, 0.88) 92%, #030303 100%)'
+          }} />
+          </div>
+        </div>
+
+        <div style={{
+        position: 'relative',
+        zIndex: 6,
+        backgroundColor: '#030303',
+        padding: '32px 0'
+      }}>
+          <div style={{
+          maxWidth: '1440px',
+          margin: '0 auto',
+          padding: '0 40px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '20px'
+        }}>
+            <span style={{
+            color: 'rgba(255, 255, 255, 0.5)',
+            fontSize: '14px',
+            fontWeight: 500
+          }}>
+              © 2026 Dishastra AI. All rights reserved.
+            </span>
+            <div style={{
+            display: 'flex',
+            gap: '14px'
+          }}>
+              {['d73cd8fe-e4b2-4e0b-bf95-6a2cb9b7fd28', '8422ee99-6669-48da-bae1-c3a48a0fa258', '44b008f7-7e19-4d37-89a4-5f967642aeed', 'd861a7cf-d2d5-448c-b7cc-39b944a6a064'].map((id, index) => <a key={index} href="#" className="social-hover" style={{
+              width: '44px',
+              height: '44px',
+              borderRadius: '22px',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              transition: 'all 0.2s ease',
+              cursor: 'pointer'
+            }}>
+                  <img src={`https://storage.googleapis.com/storage.magicpath.ai/user/427369152559349760/figma-assets/${id}.svg`} alt="Social" style={{
+                width: '18px'
+              }} />
+                </a>)}
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>;
+};

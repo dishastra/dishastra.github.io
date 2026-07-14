@@ -15,13 +15,15 @@ const [isVisible, setIsVisible] = useState(false);
       { threshold: 0.1 } // Trigger when 10% of the element is visible
     );
 
-    if (tutorialSectionRef.current) {
-      observer.observe(tutorialSectionRef.current);
+    const currentRef = tutorialSectionRef.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (tutorialSectionRef.current) {
-        observer.unobserve(tutorialSectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);

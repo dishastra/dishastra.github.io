@@ -13,13 +13,15 @@ export const AboutSection = () => {
       { threshold: 0.1 } // Trigger when 10% of the element is visible
     );
 
-    if (aboutSectionRef.current) {
-      observer.observe(aboutSectionRef.current);
+    const currentRef = aboutSectionRef.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (aboutSectionRef.current) {
-        observer.unobserve(aboutSectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);

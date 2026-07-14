@@ -1,0 +1,494 @@
+/* ================================================================
+   FOOTER SECTION
+   ================================================================ */
+
+.pre-footer-section {
+  width: 100%;
+  background-color: #000000;
+  /* Match above black bg */
+  color: white;
+  padding: 60px 0 100px;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Marquee ───────────────────────────────────────────────────── */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  padding: 20px 0 60px;
+  /* Spacing below the marquee */
+  position: relative;
+}
+
+.waitlist-marquee {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1;
+  padding: 10px 0 30px;
+  overflow: hidden;
+}
+
+.waitlist-marquee .ll-item {
+  line-height: 1.1;
+}
+
+.marquee-star {
+  color: #8ad45a;
+  font-size: 0.45em;
+  margin-top: -0.1em;
+  /* Slight visual adjustment to keep it perfectly vertically centered if needed */
+}
+
+/* ── Waitlist Component ────────────────────────────────────────── */
+.waitlist-wrapper {
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.waitlist-card {
+  background-color: #040406;
+  border: 1px solid rgba(46, 48, 56, 1);
+  border-radius: 12px;
+  padding: 40px 60px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.waitlist-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 30px;
+  margin-top: 0;
+}
+
+.waitlist-form {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  width: 100%;
+}
+
+.waitlist-input {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 14px 20px;
+  color: white;
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  max-width: 250px;
+}
+
+.waitlist-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.waitlist-input:focus {
+  border-color: #8ad45a;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.waitlist-button {
+  background-color: #8ad45a;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 24px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .waitlist-button:hover {
+    background-color: #9ee171;
+  }
+}
+
+.waitlist-button:active {
+  transform: scale(0.98);
+}
+
+/* Responsive – Tablet */
+@media (max-width: 768px) {
+  .waitlist-card {
+    padding: 32px 28px;
+    max-width: 100%;
+  }
+
+  .waitlist-input {
+    max-width: none;
+  }
+}
+
+/* Responsive – Mobile */
+@media (max-width: 600px) {
+  .waitlist-wrapper {
+    padding: 0 16px;
+  }
+
+  .waitlist-card {
+    padding: 24px 20px;
+    border-radius: 10px;
+  }
+
+  .waitlist-text {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .waitlist-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .waitlist-input,
+  .waitlist-button {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .waitlist-button {
+    justify-content: center;
+  }
+}
+
+/* ================================================================
+   ACTUAL FOOTER SECTION (contact)
+   ================================================================ */
+
+.actual-footer {
+  position: relative;
+  width: 100%;
+  background: #030303;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.af-sky-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center top;
+  z-index: 0;
+}
+
+.af-sky-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, #030303 0%, rgba(3, 3, 3, 0.6) 18%, rgba(3, 3, 3, 0.35) 45%, rgba(3, 3, 3, 0.2) 65%, rgba(3, 3, 3, 0.6) 85%, #030303 100%);
+  z-index: 1;
+}
+
+.af-landscape-container {
+  position: relative;
+  width: 100%;
+  min-height: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 2;
+  padding-bottom: 200px;
+}
+
+.af-massive-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(80px, 24vw, 460px);
+  line-height: 0.8;
+  text-align: center;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  margin: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 14%, rgba(255, 255, 255, 0.58) 42%, rgba(240, 210, 95, 0.46) 65%, rgba(205, 170, 60, 0.3) 82%, rgba(155, 125, 35, 0.12) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  /* fallback */
+
+  position: absolute;
+  top: 36%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 3;
+}
+
+.af-hills-bg {
+  position: absolute;
+  bottom: -100px;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  z-index: 4;
+}
+
+.af-hills-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(3, 3, 3, 0) 0%, rgba(3, 3, 3, 0) 80%, rgba(3, 3, 3, 0.3) 90%, rgba(3, 3, 3, 0.88) 96%, #030303 100%);
+}
+
+.af-gradient-mask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  background: linear-gradient(to top, #030303 0%, rgba(3, 3, 3, 0.9) 15%, rgba(3, 3, 3, 0.5) 40%, rgba(3, 3, 3, 0) 100%);
+  z-index: 5;
+}
+
+.af-motto {
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: clamp(16px, 3vw, 23.2px);
+  line-height: 1.55;
+  text-align: center;
+  letter-spacing: -0.464px;
+  color: #FFFFFF;
+  width: 100%;
+  max-width: 800px;
+  /* Increased from 538px to fit on 2 lines securely */
+  z-index: 6;
+}
+
+/* ── Bottom Section ── */
+.af-bottom {
+  position: relative;
+  width: 100%;
+  background: #030303;
+  padding: 16px 40px 32px;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.af-bottom-content {
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.af-copyright {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.af-social-links {
+  display: flex;
+  gap: 14px;
+}
+
+.af-social-icon {
+  width: 44px;
+  height: 44px;
+  background: none;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .af-social-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+}
+
+/* ── Footer Responsive ────────────────────────────────────── */
+
+/* Tablet */
+@media (max-width: 768px) {
+  /* Landscape container: shrink height proportionally */
+  .af-landscape-container {
+    min-height: 560px;
+    padding-bottom: 140px;
+  }
+
+  .af-massive-text {
+    top: 62%;
+    font-size: clamp(60px, 17vw, 150px);
+  }
+
+  /* Motto: scale font, tighten max-width so it wraps cleanly */
+  .af-motto {
+    top: 80px;
+    font-size: clamp(14px, 2.8vw, 18px);
+    max-width: 90%;
+    padding: 0 16px;
+  }
+
+  /* Hills: fill the lower portion properly */
+  .af-hills-bg {
+    bottom: -60px;
+    height: 60%;
+  }
+
+  /* Bottom bar: center everything */
+  .af-bottom {
+    padding: 20px 24px 28px;
+  }
+
+  .af-bottom-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+  }
+
+  /* Swap order: icons on top, copyright below — both explicitly centred */
+  .af-social-links {
+    order: 0;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .af-copyright {
+    order: 1;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .af-landscape-container {
+    min-height: 460px;
+    padding-bottom: 110px;
+  }
+
+  .af-massive-text {
+    top: 64%;
+    font-size: 18vw;
+    letter-spacing: -0.02em;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .af-motto {
+    top: 60px;
+    font-size: clamp(13px, 3.8vw, 16px);
+    max-width: 88%;
+    line-height: 1.5;
+  }
+
+  .af-hills-bg {
+    bottom: -40px;
+    height: 62%;
+  }
+
+  .af-gradient-mask {
+    height: 180px;
+  }
+
+  .af-bottom {
+    padding: 16px 20px 24px;
+  }
+
+  .af-social-links {
+    gap: 12px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .af-landscape-container {
+    min-height: 400px;
+    padding-bottom: 90px;
+  }
+
+  .af-massive-text {
+    top: 66%;
+    font-size: 18vw;
+    letter-spacing: -0.02em;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .af-motto {
+    top: 50px;
+    font-size: 13px;
+    max-width: 92%;
+  }
+
+  .af-hills-bg {
+    bottom: -30px;
+    height: 65%;
+  }
+
+  /* Pre-footer section: tighten on small screens */
+  .pre-footer-section {
+    padding: 40px 0 70px;
+  }
+
+  .waitlist-card {
+    padding: 28px 16px;
+  }
+
+  .waitlist-text {
+    font-size: 1rem;
+  }
+}

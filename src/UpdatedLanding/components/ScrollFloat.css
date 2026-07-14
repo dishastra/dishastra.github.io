@@ -1,0 +1,21 @@
+/* ================================================================
+   ScrollFloat — base layout styles.
+   Font/size/colour are applied via containerClassName/textClassName
+   props so each usage site can customise independently.
+   ================================================================ */
+
+/* Container <p> — clips the characters during animation */
+.sf-container {
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Inner <span> — inherits whatever text styles the parent applies */
+.sf-text {
+  display: inline-block;
+}
+
+/* Each character <span> — must be inline-block for GSAP transforms */
+.sf-char {
+  display: inline-block;
+}

@@ -1,0 +1,159 @@
+/* ================================================================
+   MID SECTION — Black background, 3 intro paras + Powered By marquee
+   Typography: Fraunces for paras / Inter for labels
+   Animation: GSAP ScrollFloat handles character reveal
+   ================================================================ */
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Inter:wght@400;500;600&display=swap');
+
+/* ── Section wrapper ──────────────────────────────────────────── */
+.ms-section {
+  background-color: #000000;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 40px 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ── Intro paragraphs block ───────────────────────────────────── */
+.ms-intro-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  max-width: 900px;
+  width: 100%;
+  padding: 140px 0 240px;
+  text-align: center;
+}
+
+/* ── Para container (the <p> ScrollFloat renders) ─────────────── */
+.ms-para {
+  /* override sf-container margin */
+  margin: 0 !important;
+  width: 100%;
+  text-align: center;
+}
+
+/* ── Para text (inner <span> inside ScrollFloat) ──────────────── */
+.ms-para-text {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  line-height: 1.4;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+}
+
+/* ── Powered By block ─────────────────────────────────────────── */
+.ms-powered-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 52px;
+  padding-bottom: 100px;
+}
+
+/* ── "POWERED BY" label ───────────────────────────────────────── */
+.ms-powered-label {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ── Marquee strip ────────────────────────────────────────────── */
+.ms-marquee-wrap {
+  width: 100%;
+  max-width: 1440px;
+  height: 60px;
+  position: relative;
+}
+
+/* ── Logo item (SVG icon + name side-by-side) ─────────────────── */
+.ms-logo-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* SVG icon — dim by default */
+.ms-logo-svg {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: brightness(0) invert(1) opacity(0.8);
+  transition: filter 0.35s ease;
+  flex-shrink: 0;
+}
+
+/* Name text — dim by default */
+.ms-logo-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.35s ease;
+  white-space: nowrap;
+}
+
+/* Hover over the marquee → all logos go full white (pointer devices only) */
+@media (hover: hover) and (pointer: fine) {
+  .ms-marquee-wrap:hover .ms-logo-svg {
+    filter: brightness(0) invert(1) opacity(1);
+  }
+
+  .ms-marquee-wrap:hover .ms-logo-name {
+    color: #ffffff;
+  }
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 960px) {
+  .ms-intro-wrap {
+    padding: 80px 0 140px;
+    gap: 32px;
+    max-width: 540px;
+  }
+
+  .ms-para-text {
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .ms-section {
+    padding: 0 24px 0;
+  }
+
+  .ms-intro-wrap {
+    padding: 60px 0 110px;
+    gap: 24px;
+    max-width: 100%;
+  }
+
+  .ms-para-text {
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+  }
+
+  .ms-powered-wrap {
+    gap: 36px;
+    padding-bottom: 60px;
+  }
+
+  .ms-marquee-wrap {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,174 @@
+/* ================================================================
+   FEATURES SECTION — Exact Replication
+   ================================================================ */
+
+.fs-section {
+  width: 100%;
+  background-color: #000000; /* Match above black bg */
+  padding: 100px 40px 140px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.fs-container {
+  width: 100%;
+  max-width: 1800px; /* Made the whole section bigger */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ───────────────────────────────────────────────────── */
+.fs-header-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+  margin-bottom: 100px;
+  padding-left: 32px;
+  position: relative;
+}
+
+.fs-heading {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 5vw, 4.5rem); /* Made the heading bigger */
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.fs-heading-highlight {
+  color: #8ad45a; 
+  font-style: italic;
+  font-weight: 300; /* Match hero heading italic weight exactly */
+}
+
+.fs-subheading {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem; /* Increased size */
+  line-height: 1.6;
+  color: #ffffff;
+  max-width: 700px;
+  margin: 0;
+}
+
+/* ── Cards Grid ───────────────────────────────────────────────── */
+.fs-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 0; 
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* ── Individual Card ──────────────────────────────────────────── */
+.fs-card {
+  background-color: transparent; /* Removed separate background color */
+  border: 1px solid rgba(46, 48, 56, 1);
+  box-sizing: border-box;
+  position: relative;
+  min-height: 460px; /* Increased min-height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+  padding: 48px 40px; /* Increased padding */
+}
+
+/* Fix adjacent borders by shifting cards negatively on borders */
+.fs-cards-grid > :not(:first-child) {
+  margin-left: -1px; 
+}
+
+/* Make sure hovered cards stay above the rest to show full outline */
+.fs-card.hovered {
+  z-index: 10;
+  outline: 1px solid rgba(138, 212, 90, 0.5); 
+  border-color: transparent; 
+}
+
+.fs-card-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem; /* Made card text size bigger */
+  color: rgba(255, 255, 255, 1);
+  margin: 0;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.fs-card.hovered .fs-card-title {
+  color: rgba(138, 212, 90, 1);
+}
+
+.fs-card-icon-slot {
+  width: 240px; /* Greatly increased icon size */
+  height: 240px; 
+  margin: 32px auto; /* Reduced margin to accommodate larger icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.9;
+}
+
+.fs-card.hovered .fs-card-icon-slot {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.fs-lottie {
+  width: 100%;
+  height: 100%;
+}
+
+.fs-lottie-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.fs-card-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem; /* Made card description bigger */
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  margin-top: auto; 
+  text-align: left;
+  width: 100%;
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .fs-cards-grid > :not(:first-child) {
+    margin-left: 0;
+    margin-top: -1px; /* when stacking, collapse vertical borders */
+  }
+}
+
+@media (max-width: 768px) {
+  .fs-section {
+    padding: 80px 24px 100px;
+  }
+  
+  .fs-header-wrap {
+    padding-left: 0;
+    margin-bottom: 60px;
+    gap: 24px;
+  }
+  
+  .fs-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .fs-heading {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+}

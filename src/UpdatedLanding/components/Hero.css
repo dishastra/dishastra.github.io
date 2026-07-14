@@ -1,0 +1,488 @@
+/* ============================================================
+   HERO SECTION — Pixel-perfect Figma CSS translation
+   All values taken directly from Figma layer specs.
+   Fonts: Fraunces (heading/subtitle), Inter (button)
+   ============================================================ */
+
+/* ── section.nl-hero ──
+   display: flex; flex-direction: column; align-items: center;
+   padding: 245px 40px 297.81px; gap: 50px; isolation: isolate;
+   position: absolute; height: 1379px; min-height: 1379px;
+   left: 0; right: 0; top: 0;
+   We use position:relative on the wrapper and let the section fill it. */
+.nl-hero {
+  width: 100%;
+  min-height: 1379px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 245px 40px 297.81px;
+  gap: 50px;
+  isolation: isolate;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: #000000;
+}
+
+/* ── bg%20hero.png ──
+   position: absolute; width: 1920px; height: 1379px; left: 0; top: 0;
+   z-index: 0 */
+.nl-hero-bg {
+  position: absolute;
+  width: 100%;
+  height: 1481px;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* ── div.nl-hero-overlay ──
+   position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+   z-index: 1 */
+.nl-hero-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.88) 0%,
+      rgba(0, 0, 0, 0.65) 18%,
+      rgba(0, 0, 0, 0.45) 35%,
+      rgba(0, 0, 0, 0.20) 55%,
+      rgba(0, 0, 0, 0.10) 75%,
+      rgba(0, 0, 0, 0.40) 100%);
+  z-index: 1;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+/* ── div.nl-hero-content ──
+   display: flex; flex-direction: column; align-items: center;
+   padding: 0; gap: 22px;
+   width: 1140px; max-width: 1140px; height: 277.5px;
+   z-index: 2 */
+.nl-hero-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  gap: 22px;
+  width: 1140px;
+  max-width: 1140px;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+/* ── h1.nl-hero-heading ──
+   width: 934px; height: 146px;
+   font-family: 'Fraunces'; font-weight: 400; font-size: 68px;
+   line-height: 73px; text-align: center; letter-spacing: -0.6px;
+   color: #FFFFFF */
+.nl-hero-heading {
+  width: 934px;
+  max-width: 934px;
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 68px;
+  line-height: 73px;
+  text-align: center;
+  letter-spacing: -0.6px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.nl-hero-heading em {
+  color: #8AD45A;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* ── p.nl-hero-subtitle ──
+   width: 630px; max-width: 780px; height: 37px;
+   font-family: 'Fraunces'; font-weight: 300; font-size: 25px;
+   line-height: 36px; letter-spacing: -0.3px;
+   color: rgba(255, 255, 255, 0.88) */
+.nl-hero-subtitle {
+  width: 630px;
+  max-width: 780px;
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 25px;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: -0.3px;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0;
+}
+
+/* ── div.nl-cta-row-margin ──
+   padding: 4px 0 0; width: 163px; height: 51px */
+.nl-cta-row-margin {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 4px 0 0;
+  width: 163px;
+}
+
+/* ── div.nl-cta-row ──
+   display: flex; flex-direction: row; justify-content: center;
+   align-items: center; width: 163px; height: 47px */
+.nl-cta-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 163px;
+  height: 47px;
+}
+
+/* ── button (Component 1) ──
+   padding: 14px 32px; background: #E4E4E7; border-radius: 100px;
+   font-family: 'Inter'; font-weight: 500; font-size: 16px;
+   line-height: 19px; letter-spacing: -0.2px; color: #18181B;
+   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1)
+   NOTE: button font is INTER (not Outfit/Fraunces) per Figma spec */
+.nl-btn-hero {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 32px;
+  width: 163px;
+  height: 47px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.2px;
+  color: #18181B;
+  background: #E4E4E7;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease,
+    box-shadow 0.2s ease, filter 0.2s ease;
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nl-btn-hero:hover {
+    transform: translateY(-2px);
+    background-color: #ffffff;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.1);
+  }
+}
+
+.nl-btn-hero:active {
+  transform: translateY(0);
+}
+
+/* ── div.nl-dashboard-wrap-margin ──
+   padding: 25px 0 0; width: 948px; max-width: 948px;
+   z-index: 3 */
+.nl-dashboard-wrap-margin {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 25px 0 0;
+  width: 948px;
+  max-width: 948px;
+  position: relative;
+  z-index: 3;
+  flex-shrink: 0;
+}
+
+/* ── div.nl-dashboard-card ──
+   width: 948px; height: 483.44px;
+   background: rgba(255,255,255,0.002);
+   box-shadow: 0px 0px 0px 1px rgba(255,255,255,0.09),
+               0px 28px 64px rgba(0,0,0,0.6),
+               0px 4px 18px rgba(0,0,0,0.4);
+   border-radius: 14px */
+.nl-dashboard-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  width: 948px;
+  height: 483.44px;
+  background: #000000;
+  box-shadow:
+    0px 0px 0px 1px rgba(255, 255, 255, 0.09),
+    0px 28px 64px rgba(0, 0, 0, 0.60),
+    0px 4px 18px rgba(0, 0, 0, 0.40);
+  border-radius: 14px;
+  overflow: hidden;
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* ── Dishastra Dashboard img ──
+   width: 948px; height: 483.44px; max-height: 600px */
+.nl-dashboard-img {
+  width: 948px;
+  height: 483.44px;
+  max-height: 600px;
+  display: block;
+  object-fit: cover;
+  align-self: stretch;
+  flex-shrink: 0;
+  filter: brightness(0.9) contrast(1.05); /* Fixes compression banding in the webp */
+}
+
+/* ── div.nl-hills-wrap ──
+   position: absolute; min-width: 1920px; height: 999px;
+   left: 0%; right: 0%; top: 680px;
+   z-index: 4; isolation: isolate
+   The ::after handles the fade overlay with bottom: 300px stop */
+.nl-hills-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 683px;
+  height: 999px;
+  min-width: 100%;
+  z-index: 4;
+  isolation: isolate;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── inner div ──
+   width: 1920px; height: 999px; z-index: 0 */
+.nl-hills-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  width: 100%;
+  height: 999px;
+  z-index: 0;
+  position: relative;
+}
+
+/* ── image.webp ──
+   width: 1920px; height: 999px; object-fit: cover */
+.nl-hills-img {
+  width: 100%;
+  height: 999px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  flex-shrink: 0;
+  filter: brightness(0.8) contrast(1.05);
+  transform: scale(1.005);
+  /* Slight 2% stretch to fill out the edges */
+}
+
+/* ── ::after overlay on hills ──
+   position: absolute; left: 0; right: 0; top: 0; bottom: 300px;
+   (bottom: 300px = overlay is 999-300 = 699px tall, aligns exactly to section bottom)
+   gradient: transparent→transparent(50%)→0.3(75%)→0.85(92%)→#040404(100%)
+   z-index: 1 (above hills image) */
+.nl-hills-wrap::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 300px;
+  background: linear-gradient(180deg,
+      rgba(4, 4, 4, 0) 0%,
+      rgba(4, 4, 4, 0) 50%,
+      rgba(4, 4, 4, 0.30) 75%,
+      rgba(4, 4, 4, 0.85) 92%,
+      #040404 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* ── Large Tablet / Small Desktop ─────────────────────────── */
+@media (max-width: 1200px) {
+  .nl-hero-content,
+  .nl-dashboard-wrap-margin {
+    width: 90vw;
+    max-width: 90vw;
+  }
+
+  .nl-dashboard-card,
+  .nl-dashboard-img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .nl-hero-heading {
+    width: auto;
+    max-width: 90vw;
+  }
+}
+
+/* ── Tablet ──────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .nl-hero {
+    /* Clear the Figma fixed height — let content dictate height */
+    min-height: unset;
+    padding: clamp(90px, 14vh, 160px) 24px 0;
+    gap: 28px;
+    /* bottom padding is 0 — hills layer sits flush at the bottom */
+    padding-bottom: 0;
+  }
+
+  .nl-hero-bg {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .nl-hero-content {
+    width: 100%;
+    max-width: 100%;
+    gap: 16px;
+  }
+
+  .nl-hero-heading {
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.4px;
+    white-space: normal;
+    width: auto;
+    max-width: 95%;
+  }
+
+  .nl-hero-subtitle {
+    font-size: clamp(0.95rem, 2.2vw, 1.2rem);
+    line-height: 1.5;
+    letter-spacing: -0.2px;
+    white-space: normal;
+    width: auto;
+    max-width: 88%;
+  }
+
+  .nl-cta-row-margin,
+  .nl-cta-row {
+    width: auto;
+  }
+
+  .nl-dashboard-wrap-margin {
+    width: 90%;
+    max-width: 90%;
+    padding-top: 16px;
+    /* Add bottom spacing so hills don't fully cover the dashboard */
+    padding-bottom: 180px;
+  }
+
+  .nl-dashboard-card,
+  .nl-dashboard-img {
+    width: 100%;
+    height: auto;
+    max-height: unset;
+  }
+
+  /* Anchor hills to section bottom instead of fixed top offset */
+  .nl-hills-wrap {
+    top: auto;
+    bottom: 0;
+    height: 480px;
+  }
+
+  .nl-hills-inner,
+  .nl-hills-img {
+    height: 480px;
+  }
+
+  .nl-hills-wrap::after {
+    bottom: -2px;
+  }
+}
+
+/* ── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .nl-hero {
+    padding: clamp(72px, 12vh, 110px) 20px 0;
+    gap: 20px;
+  }
+
+  .nl-hero-heading {
+    font-size: clamp(1.85rem, 8.5vw, 2.4rem);
+    max-width: 95%;
+  }
+
+  .nl-hero-subtitle {
+    font-size: clamp(0.88rem, 3.8vw, 1rem);
+    max-width: 92%;
+  }
+
+  .nl-dashboard-wrap-margin {
+    width: 92%;
+    max-width: 92%;
+    padding-top: 12px;
+    padding-bottom: 200px;
+  }
+
+  .nl-hills-wrap {
+    height: 380px;
+  }
+
+  .nl-hills-inner,
+  .nl-hills-img {
+    height: 380px;
+  }
+
+  .nl-hills-wrap::after {
+    bottom: -2px;
+  }
+}
+
+/* ── Small Mobile (≤ 390px) ──────────────────────────────── */
+@media (max-width: 390px) {
+  .nl-hero {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .nl-hero-heading {
+    font-size: clamp(1.65rem, 8vw, 2rem);
+  }
+
+  .nl-hero-subtitle {
+    font-size: 0.88rem;
+  }
+
+  .nl-dashboard-wrap-margin {
+    width: 96%;
+    max-width: 96%;
+    padding-bottom: 220px;
+  }
+
+  .nl-hills-wrap {
+    height: 340px;
+  }
+
+  .nl-hills-inner,
+  .nl-hills-img {
+    height: 340px;
+  }
+
+  .nl-hills-wrap::after {
+    bottom: -2px;
+  }
+}

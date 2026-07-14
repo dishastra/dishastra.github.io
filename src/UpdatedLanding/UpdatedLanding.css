@@ -1,0 +1,10 @@
+.updated-landing {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.updated-landing main {
+  flex: 1; /* This pushes the footer to the bottom if content is short */
+}
